@@ -1,4 +1,4 @@
-import { flexItemsCol } from "src/shared/style";
+import { flexItemsCol, flexItemsRow } from "src/shared/style";
 
 interface card {
   title: string;

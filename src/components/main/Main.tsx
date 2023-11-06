@@ -1,16 +1,15 @@
 import Hero from "./Hero";
 import Guidance from "./Guidance";
-import { flexItemsCol, flexItemsRow } from "src/shared/style";
+import User from "./User";
+import Campsite from "./Campsite";
 
 function Main() {
   return (
     <main>
       <Hero />
-      <div className={`${flexItemsRow} justify-center p-16`}>
-        <div className={`w-1200 ${flexItemsCol} items-center flex-col `}>
-          <Guidance />
-        </div>
-      </div>
+      <Guidance />
+      <User />
+      <Campsite />
     </main>
   );
 }
