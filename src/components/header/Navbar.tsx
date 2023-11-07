@@ -11,18 +11,18 @@ function Navbar() {
 
   return (
     <nav>
-      <div className={`${flexItemsRow} justify-center w-full h-20 p-4 fixed z-30 top-0 bg-white drop-shadow`}>
+      <div className={`${flexItemsRow} justify-center w-screen h-20 p-4 fixed z-30 top-0 bg-white drop-shadow`}>
         <div className={`w-1200 ${flexItemsRow} justify-between`}>
           {/* {left side} */}
           <div className={`${flexItemsRow} gap-8 w-3/4 ps-2`}>
             <h1 className={`text-2xl pl-2 font-medium text-primary-2`}>ENGLISH BONFIRE</h1>
             <div className={`${flexItemsRow} gap-8`}>
-              <p className={`text-primary-2 font-medium sm:hidden lg:block`}>ABOUT US</p>
+              <p className={`text-primary-2 font-medium sm:hidden lg:block`}>ADMIN PROFILE</p>
               <p className={`text-primary-2 font-medium sm:hidden lg:block`}>CAMP</p>
             </div>
           </div>
           {/* {right side} */}
-          <div className={`${flexItemsRow} justify-end md:gap-2 sm:gap-0 w-1/4 pe-4`}>
+          <div className={`${flexItemsRow} justify-end md:gap-2 sm:gap-0 w-1/4 sm:pe-1 md:pe-4`}>
             <p className={`text-primary-2 font-medium sm:hidden lg:block`}>DASHBOARD</p>
             <button className={`p-3 cursor-pointer`}>
               <div className={`w-7`}>
@@ -47,7 +47,7 @@ function Navbar() {
           >
             <div className={`flex flex-col justify-center gap-3 text-primary-2 font-medium text-xl`}>
               <p className={`pb-1 pt-4 border-b border-gray-500`}>DASHBOARD</p>
-              <p className={`pb-1 pt-4 border-b border-gray-500`}>ABOUT US</p>
+              <p className={`pb-1 pt-4 border-b border-gray-500`}>ADMIN PROFILE</p>
               <p className={`pb-1 pt-4 border-b border-gray-500`}>CAMP</p>
             </div>
           </div>

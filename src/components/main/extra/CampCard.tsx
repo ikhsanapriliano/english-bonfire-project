@@ -16,7 +16,6 @@ function CampCard() {
           <CardProfile />
         </div>
       </div>
-      <p>{`Episode 1 : Introduce Your Self`}</p>
       <p>Monday 8 PM</p>
       <button className={`py-1 px-5 rounded-sm mt-2 bg-primary-2 text-white`}>Join</button>
     </div>

@@ -1,16 +1,26 @@
 import { flexItemsCol, flexItemsRow } from "shared/style";
-import Instagram from "assets/ig-logo.png";
+import Community from "assets/community.png";
+import User from "./extra/User";
 
 function Hero() {
   return (
-    <section className={`${flexItemsCol} items-center flex-col py-52  h-screen bg-primary-4`}>
-      <h1 className={`text-center text-5xl font-bold leading-normal`}>Community To Speak English For 10 Minutes</h1>
-      <p className={`text-xl font-medium`}>no matter what level you are, as long as you have a gasoline to learn</p>
-      <div className={`${flexItemsRow} justify-center gap-2 mt-10 `}>
-        <button className={`bg-primary-2 p-5 text-primary-4 rounded-md`}>JUST LIGHT THE BONFIRE NOW</button>
-        <img className={`w-16 rounded-2xl`} src={Instagram} />
+    <div>
+      <div className={`${flexItemsRow} justify-center p-2`}>
+        <div className={`w-1200 ${flexItemsCol} items-center flex-col `}>
+          <section className={`${flexItemsRow} justify-center sm:flex-col lg:flex-row pt-20 px-6`}>
+            <div className={`lg:w-1/2 ${flexItemsCol} items-center flex-col`}>
+              <h1 className={`text-center sm:text-2xl md:text-5xl font-bold leading-normal mt-10`}>Community To Speak English For 10 Minutes</h1>
+              <p className={`md:text-xl text-center font-medium`}>no matter what level you are as long as you have a tongue to speak</p>
+              <button className={`bg-primary-2 sm:text-sm p-3 text-white rounded-md mt-5`}>GET STARTED</button>
+            </div>
+            <div className={`lg:w-1/2 p-5`}>
+              <img className={`w-96 mx-auto`} src={Community} />
+              <User />
+            </div>
+          </section>
+        </div>
       </div>
-    </section>
+    </div>
   );
 }
 

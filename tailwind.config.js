@@ -17,7 +17,7 @@ export default {
         "primary-4": "#E8F7DD",
       },
       width: {
-        1200: "1200px",
+        1200: "1240px",
       },
     },
   },

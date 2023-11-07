@@ -6,8 +6,9 @@ function Campsite() {
     <section className={`bg-primary-4`}>
       <div className={`${flexItemsRow} justify-center p-16`}>
         <div className={`w-1200 ${flexItemsCol} items-center flex-col `}>
-          <h3 className={`text-xl font-medium`}>Current Camps</h3>
-          <div className={`${flexItemsCol} gap-10`}>
+          <h3 className={`text-xl font-medium`}>Current Camp</h3>
+          <p className={`font-medium`}>Episode 1 : Introduce Yourself</p>
+          <div className={`${flexItemsCol} flex-col lg:${flexItemsRow} lg:flex-row gap-10`}>
             <CampCard />
             <CampCard />
             <CampCard />
