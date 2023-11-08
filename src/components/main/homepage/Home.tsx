@@ -1,13 +1,13 @@
-import Hero from "./Hero";
 import Campsite from "./Campsite";
+import Hero from "./Hero";
 
-function Main() {
+function Home() {
   return (
-    <main>
+    <div>
       <Hero />
       <Campsite />
-    </main>
+    </div>
   );
 }
 
-export default Main;
+export default Home;
