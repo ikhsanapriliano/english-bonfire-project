@@ -13,6 +13,7 @@ export default defineConfig({
       main: "/src/components/main",
       hooks: "/src/hooks",
       shared: "/src/shared",
+      store: "/src/store",
     },
   },
 });

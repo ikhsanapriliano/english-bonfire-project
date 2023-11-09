@@ -30,7 +30,9 @@ function Navbar() {
           </div>
           {/* {right side} */}
           <div className={`${flexItemsRow} justify-end md:gap-2 sm:gap-0 w-1/4 sm:pe-1 md:pe-4`}>
-            <p className={`text-primary-2 font-medium sm:hidden lg:block`}>DASHBOARD</p>
+            <HashLink smooth to={`/dashboard`} className={`text-primary-2 font-medium sm:hidden lg:block`}>
+              DASHBOARD
+            </HashLink>
             <button className={`p-3 cursor-pointer`}>
               <div className={`w-7`}>
                 <MoonIcon />
@@ -53,9 +55,14 @@ function Navbar() {
             }
           >
             <div className={`flex flex-col justify-center gap-3 text-primary-2 font-medium text-xl`}>
-              <p className={`pb-1 pt-4 border-b border-gray-500`}>DASHBOARD</p>
+              <HashLink smooth to={`/dashboard`} className={`pb-1 pt-4 border-b border-gray-500`}>
+                DASHBOARD
+              </HashLink>
               <p className={`pb-1 pt-4 border-b border-gray-500`}>ADMIN PROFILE</p>
-              <p className={`pb-1 pt-4 border-b border-gray-500`}>CAMP</p>
+
+              <HashLink smooth to={`/#camp`} className={`pb-1 pt-4 border-b border-gray-500`}>
+                CAMP
+              </HashLink>
             </div>
           </div>
         </div>
