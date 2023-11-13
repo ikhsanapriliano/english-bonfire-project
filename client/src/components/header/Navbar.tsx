@@ -19,10 +19,8 @@ function Navbar() {
             <HashLink smooth to={`/#welcome`}>
               <h1 className={`text-2xl pl-2 font-medium text-primary-2`}>ENGLISH BONFIRE</h1>
             </HashLink>
-
             <div className={`${flexItemsRow} gap-8`}>
               <p className={`text-primary-2 font-medium sm:hidden lg:block`}>ADMIN PROFILE</p>
-
               <HashLink smooth to={`/#camp`} className={`text-primary-2 font-medium sm:hidden lg:block`}>
                 CAMP
               </HashLink>

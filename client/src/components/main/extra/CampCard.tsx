@@ -1,5 +1,6 @@
 import { flexItemsCol, flexItemsRow } from "src/shared/style";
 import CardProfile from "./CardProfile";
+import { HashLink } from "react-router-hash-link";
 
 interface camp {
   bivouac: string;
@@ -22,7 +23,9 @@ function CampCard(props: camp) {
         </div>
       </div>
       <p>{props.day}</p>
-      <button className={`py-1 px-5 rounded-sm mt-2 bg-primary-2 text-white`}>Join</button>
+      <HashLink smooth to={`/bevouac/#step`} className={`py-1 px-5 rounded-sm mt-2 bg-primary-2 hover:bg-primary-1 text-white`}>
+        Join
+      </HashLink>
     </div>
   );
 }
