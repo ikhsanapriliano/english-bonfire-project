@@ -1,14 +1,25 @@
 import YoungMan from "assets/young-bearded-man-with-striped-shirt.jpg";
+import { useState, useEffect } from "react";
 
 function CommunityCard() {
+  const [commune, setCommune] = useState<any>("");
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch("http://localhost:3000/community");
+      const result = await response.json();
+      setCommune(result);
+    }
+    fetchData();
+  }, []);
+
   return (
-    <div className={`lg:w-52 lg:h-72 lg:p-5 flex flex-col items-center mb-3 lg:rounded-lg bg-white border border-primary-2`}>
-      <div className={`lg:h-52 overflow-hidden justify-center items-center border border-primary-2`}>
-        <img className={`lg:relative lg:scale-[175%] lg:mt-10`} src={YoungMan} />
+    <div className={`lg:p-5 flex flex-col items-center mb-3 mt-5 lg:mt-0`}>
+      <div className={`rounded-full overflow-hidden justify-center items-center`}>
+        <img className={``} src={commune === "" ? "loading" : commune.profile} />
       </div>
-      <div className={`mt-2 text-primary-2 flex flex-col justify-center items-center`}>
-        <p>First Name</p>
-        <button className={`bg-primary-2 text-white py-1 px-2 text-xs rounded-sm hover:bg-primary-1`}>Linkedin</button>
+      <div className={`mt-2 text-primary-2 flex flex-col justify-center items-center text-center`}>
+        <p>{commune === "" ? "loading" : `${commune.firstName} ${commune.lastName}`}</p>
       </div>
     </div>
   );

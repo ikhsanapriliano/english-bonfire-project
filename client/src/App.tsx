@@ -7,7 +7,7 @@ import Step1 from "./components/main/bevouac/Step1";
 import Step2 from "./components/main/bevouac/Step2";
 import Step3 from "./components/main/bevouac/Step3";
 import Step4 from "./components/main/bevouac/Step4";
-import Step5 from "./components/main/bevouac/step5";
+import Step5 from "./components/main/bevouac/Step5";
 import Bevouac from "./components/main/bevouac/Bevouac";
 
 function App() {

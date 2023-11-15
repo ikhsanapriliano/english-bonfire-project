@@ -3,11 +3,18 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import axios from "axios";
 import qs from "querystring";
+import cors from "cors";
 
 dotenv.config();
 const app = express();
 const port = 3000;
 const mongodbUri = process.env.MONGODB_URI;
+
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+  })
+);
 
 mongoose.connect(mongodbUri);
 
@@ -40,14 +47,23 @@ const Redirect = async (code) => {
 };
 
 const userSchema = new mongoose.Schema({
+  sub: String,
   firstName: String,
   lastName: String,
   profile: String,
-  linkedin: String,
-  joinedCamp: [String],
 });
 
+const campSchema = new mongoose.Schema({
+  season: Number,
+  episode: Number,
+  bevouac1: [String],
+  bevouac2: [String],
+  bevouac3: [String],
+});
+
+let identity = "";
 const User = mongoose.model("User", userSchema);
+const Camp = mongoose.model("Camps", campSchema);
 
 app.get("/auth/linkedin", (req, res) => {
   return res.redirect(Authorization());
@@ -63,38 +79,40 @@ app.get("/auth/linkedin/callback", async (req: any, res) => {
     },
   });
   try {
-    const user = await axiosInstance.get("https://api.linkedin.com/v2/userinfo");
-    console.log(user.data);
-    res.send(user.data);
+    const fetch = await axiosInstance.get("https://api.linkedin.com/v2/userinfo");
+    const result = await fetch.data;
+    const { sub, given_name, family_name, picture } = result;
+    const exist = await User.findOne({ sub: sub });
+    if (exist === null) {
+      const newUser = new User({
+        sub: sub,
+        firstName: given_name,
+        lastName: family_name,
+        profile: picture,
+      });
+      newUser.save().then(() => {
+        console.log("new account");
+        identity = newUser.sub;
+        res.redirect("http://localhost:5173/dashboard");
+      });
+    } else {
+      console.log("account found");
+      identity = sub;
+      res.redirect("http://localhost:5173/dashboard");
+    }
   } catch (error) {
     res.send(error);
   }
 });
 
-app.get("/", (req, res) => {
-  res.send("err");
+app.get("/user", async (req, res) => {
+  const user = await User.findOne({ sub: identity });
+  res.json(user);
 });
 
-app.get("/profile", (req: any, res) => {
-  res.send("success");
-});
-
-app.post("/newUser", (req, res) => {
-  const newUser = new User({
-    firstName: "ikhsan",
-    lastName: "apriliano",
-    profile: "www.yutube.com",
-    linkedin: "www.linkedin.com",
-    joinedCamp: ["S1E1B1", "S1E2B1"],
-  });
-  newUser
-    .save()
-    .then((result) => {
-      res.send(result);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+app.get("/community", async (req, res) => {
+  const community = await User.findOne();
+  res.json(community);
 });
 
 app.listen(port, () => {
