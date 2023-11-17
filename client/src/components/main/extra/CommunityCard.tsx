@@ -1,25 +1,36 @@
-import YoungMan from "assets/young-bearded-man-with-striped-shirt.jpg";
-import { useState, useEffect } from "react";
+import UsersProfile from "../extra/UsersProfile";
 
 function CommunityCard() {
-  const [commune, setCommune] = useState<any>("");
-
-  useEffect(() => {
-    async function fetchData() {
-      const response = await fetch("http://localhost:3000/community");
-      const result = await response.json();
-      setCommune(result);
-    }
-    fetchData();
-  }, []);
-
   return (
-    <div className={`lg:p-5 flex flex-col items-center mb-3 mt-5 lg:mt-0`}>
-      <div className={`rounded-full overflow-hidden justify-center items-center`}>
-        <img className={``} src={commune === "" ? "loading" : commune.profile} />
+    <div className={`border h-full shadow-sm shadow-gray-300 rounded-md p-5`}>
+      <div className={`border shadow-md shadow-primary-1 rounded-ss-xl rounded-se-xl py-5 relative z-20`}>
+        <h2 className={`text-center font-medium text-lg`}>Community</h2>
       </div>
-      <div className={`mt-2 text-primary-2 flex flex-col justify-center items-center text-center`}>
-        <p>{commune === "" ? "loading" : `${commune.firstName} ${commune.lastName}`}</p>
+      <div className={`lg:h-[800px] grid grid-cols-3 overflow-y-scroll border scrollbar-thumb-gray-400 scrollbar-track-gray-200`}>
+        <UsersProfile />
+        <UsersProfile />
+        <UsersProfile />
+        <UsersProfile />
+        <UsersProfile />
+        <UsersProfile />
+        <UsersProfile />
+        <UsersProfile />
+        <UsersProfile />
+        <UsersProfile />
+        <UsersProfile />
+        <UsersProfile />
+        <UsersProfile />
+        <UsersProfile />
+        <UsersProfile />
+        <UsersProfile />
+        <UsersProfile />
+        <UsersProfile />
+        <UsersProfile />
+        <UsersProfile />
+        <UsersProfile />
+        <UsersProfile />
+        <UsersProfile />
+        <UsersProfile />
       </div>
     </div>
   );
