@@ -1,14 +1,49 @@
 import { flexItemsRow, flexItemsCol } from "src/shared/style";
+import { appUseSelector } from "src/hooks/hooks";
+import { useState, useEffect } from "react";
+
+type Total = {
+  admin: number;
+  member: number;
+};
 
 function User() {
+  const [total, setTotal] = useState<Total>({
+    admin: 0,
+    member: 0,
+  });
+
+  const data = appUseSelector((state) => state.community.data);
+  const { admin, member } = total;
+
+  useEffect(() => {
+    data.forEach((item) => {
+      if (item.status === "admin") {
+        setTotal((prev) => {
+          return {
+            ...prev,
+            admin: prev.admin + 1,
+          };
+        });
+      } else {
+        setTotal((prev) => {
+          return {
+            ...prev,
+            member: prev.member + 1,
+          };
+        });
+      }
+    });
+  }, [data]);
+
   return (
     <section className={`${flexItemsRow} justify-center w-full mt-5 pb-10 text-3xl font-medium`}>
       <div className={`${flexItemsCol} items-center flex-col px-5`}>
-        <p>0</p>
+        <p>{admin}</p>
         <p>Admin</p>
       </div>
       <div className={`${flexItemsCol} items-center flex-col px-5`}>
-        <p>0</p>
+        <p>{member}</p>
         <p>Member</p>
       </div>
     </section>

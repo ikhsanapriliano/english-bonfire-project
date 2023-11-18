@@ -51,10 +51,10 @@ const userSchema = new mongoose.Schema({
   firstName: String,
   lastName: String,
   profile: String,
+  status: String,
 });
 
 const campSchema = new mongoose.Schema({
-  season: Number,
   episode: Number,
   bevouac1: [String],
   bevouac2: [String],
@@ -89,31 +89,42 @@ app.get("/auth/linkedin/callback", async (req: any, res) => {
         firstName: given_name,
         lastName: family_name,
         profile: picture,
+        status: "member",
       });
       newUser.save().then(() => {
         console.log("new account");
         identity = newUser.sub;
-        res.redirect("http://localhost:5173/dashboard");
+        res.redirect("http://localhost:5173");
       });
     } else {
       console.log("account found");
       identity = sub;
-      res.redirect("http://localhost:5173/dashboard");
+      res.redirect("http://localhost:5173");
     }
   } catch (error) {
     res.send(error);
   }
 });
 
-app.get("/user", async (req, res) => {
+app.get("/personal", async (req, res) => {
   const user = await User.findOne({ sub: identity });
   res.json(user);
 });
 
 app.get("/community", async (req, res) => {
-  const community = await User.findOne();
+  const community = await User.find();
   res.json(community);
 });
+
+// app.get("/join", async (req, res) => {
+//   const join = await User.findOne({ sub: identity });
+//   if(join !== null) {
+//     const newCamp = new Camp({
+//       episode: "1",
+//       bevouac
+//     })
+//   }
+// });
 
 app.listen(port, () => {
   console.log(`your app is running on port ${port}`);

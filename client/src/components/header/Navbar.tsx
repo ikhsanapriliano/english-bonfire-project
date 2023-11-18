@@ -2,8 +2,11 @@ import { flexItemsRow } from "shared/style";
 import { MoonIcon, Bars3Icon, XMarkIcon } from "@heroicons/react/20/solid";
 import { useState } from "react";
 import { HashLink } from "react-router-hash-link";
+import personalProfile from "assets/personalProfile.png";
+import { appUseSelector } from "src/hooks/hooks";
 
 function Navbar() {
+  const { data, isLoggedIn } = appUseSelector((state) => state.personal);
   const [menu, setMenu] = useState(false);
 
   function onMenu() {
@@ -20,25 +23,27 @@ function Navbar() {
               <h1 className={`text-2xl pl-2 font-medium text-primary-2`}>ENGLISH BONFIRE</h1>
             </HashLink>
             <div className={`${flexItemsRow} gap-8`}>
-              <p className={`text-primary-2 font-medium sm:hidden lg:block`}>ADMIN PROFILE</p>
+              <HashLink smooth to={`/#welcome`} className={`text-primary-2 font-medium sm:hidden lg:block`}>
+                Home
+              </HashLink>
+              <HashLink smooth to={`/#dashboard`} className={`text-primary-2 font-medium sm:hidden lg:block`}>
+                Dashboard
+              </HashLink>
               <HashLink smooth to={`/#camp`} className={`text-primary-2 font-medium sm:hidden lg:block`}>
-                CAMP
+                Camp
               </HashLink>
             </div>
           </div>
           {/* {right side} */}
           <div className={`${flexItemsRow} justify-end md:gap-2 sm:gap-0 w-1/4 sm:pe-1 md:pe-4`}>
-            <HashLink smooth to={`/dashboard`} className={`text-primary-2 font-medium sm:hidden lg:block`}>
-              DASHBOARD
-            </HashLink>
             <button className={`p-3 cursor-pointer`}>
               <div className={`w-7`}>
                 <MoonIcon />
               </div>
             </button>
-            <div className={`${flexItemsRow} justify-center h-12 w-12 bg-primary-2 rounded-md sm:hidden md:flex`}>
-              <p className={`text-2xl text-white`}>A</p>
-            </div>
+            <HashLink smooth to={`/#dashboard`} className={`${flexItemsRow} justify-center sm:hidden md:flex`}>
+              <img className={`w-14 rounded-full`} src={isLoggedIn ? data?.profile : personalProfile} />
+            </HashLink>
             <button onClick={onMenu} className={`lg:hidden p-3 cursor-pointer`}>
               <div className={`w-7 `}>{menu ? <XMarkIcon /> : <Bars3Icon />}</div>
             </button>
@@ -53,13 +58,14 @@ function Navbar() {
             }
           >
             <div className={`flex flex-col justify-center gap-3 text-primary-2 font-medium text-xl`}>
-              <HashLink smooth to={`/dashboard`} className={`pb-1 pt-4 border-b border-gray-500`}>
-                DASHBOARD
+              <HashLink smooth to={`/#welcome`} className={`pb-1 pt-4 border-b border-gray-500`}>
+                Home
               </HashLink>
-              <p className={`pb-1 pt-4 border-b border-gray-500`}>ADMIN PROFILE</p>
-
+              <HashLink smooth to={`/#dashboard`} className={`pb-1 pt-4 border-b border-gray-500`}>
+                Dashboard
+              </HashLink>
               <HashLink smooth to={`/#camp`} className={`pb-1 pt-4 border-b border-gray-500`}>
-                CAMP
+                Camp
               </HashLink>
             </div>
           </div>

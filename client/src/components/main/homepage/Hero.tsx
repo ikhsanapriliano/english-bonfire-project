@@ -7,8 +7,8 @@ function Hero() {
   return (
     <div>
       <div id="welcome" className={`${flexItemsRow} justify-center p-2`}>
-        <div className={`w-1200 ${flexItemsCol} items-center flex-col `}>
-          <section className={`${flexItemsRow} justify-center sm:flex-col lg:flex-row mt-20 px-6`}>
+        <div className={`lg:w-1200 ${flexItemsCol} items-center flex-col `}>
+          <section className={`${flexItemsRow} justify-center sm:flex-col lg:flex-row mt-20 lg:px-6`}>
             <div className={`lg:w-1/2 ${flexItemsCol} items-center flex-col`}>
               <Welcome />
             </div>

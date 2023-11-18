@@ -1,26 +1,15 @@
-import { useState, useEffect } from "react";
-import { Navigate } from "react-router-dom";
 import Instagram from "assets/instagram.png";
 import Linkedin from "assets/Linkedin.png";
 import Discord from "assets/Discord.png";
 import { Link } from "react-router-dom";
+import { appUseSelector, appUseDispatch } from "src/hooks/hooks";
+import personalProfile from "assets/personalProfile.png";
+import LinkedinBlue from "assets/Sign-in-Large---Active.png";
+import { logOut } from "src/store/slice/PersonalSlice";
 
 function PersonalCard() {
-  const [data, setData] = useState<any>("");
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch("http://localhost:3000/user");
-      const result = await response.json();
-      setData(result);
-    };
-    fetchData();
-  }, []);
-
-  if (data === null) {
-    console.log(data);
-    return <Navigate to={`/`} />;
-  }
+  const dispatch = appUseDispatch();
+  const { data, isLoggedIn, camp } = appUseSelector((state) => state.personal);
 
   return (
     <div className={` sm:mb-4 lg:mb-0 `}>
@@ -28,9 +17,9 @@ function PersonalCard() {
         <div className="p-5 flex flex-col justify-center items-center border-b border-gray-300 ">
           <p className={`font-medium text-lg`}>My Profile</p>
           <div className={`rounded-full overflow-hidden my-7`}>
-            <img src={data === "" ? "loading" : data.profile} alt="something wrong with your profile" />
+            <img src={isLoggedIn ? data?.profile : personalProfile} alt="something wrong with your device" />
           </div>
-          <p className={`text-center`}>{data === "" ? "loading" : `${data.firstName} ${data.lastName}`}</p>
+          <p className={`text-center`}>{isLoggedIn ? `${data?.firstName} ${data?.lastName}` : `You Are Not Signed In`}</p>
         </div>
         <div className={`flex flex-col justify-center items-center w-full p-5 gap-2 border-b border-gray-300`}>
           <p className={`text-center`}>Current Joined Camp</p>
@@ -41,7 +30,20 @@ function PersonalCard() {
           </div>
         </div>
         <div className={`py-5`}>
-          <button className={`text-white rounded-sm text-sm bg-red-700 py-1 px-5 hover:bg-red-900`}>Logout</button>
+          {isLoggedIn ? (
+            <button
+              onClick={() => {
+                dispatch(logOut());
+              }}
+              className={`text-white rounded-sm text-sm bg-red-700 py-1 px-5 hover:bg-red-900`}
+            >
+              Logout
+            </button>
+          ) : (
+            <Link to={`http://localhost:3000/auth/linkedin`}>
+              <img className={`h-8`} src={LinkedinBlue} />
+            </Link>
+          )}
         </div>
       </div>
       <div className={`flex flex-col justify-center items-center mt-4 rounded lg border shadow-sm shadow-gray-300`}>

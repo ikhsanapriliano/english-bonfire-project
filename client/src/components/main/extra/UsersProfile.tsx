@@ -1,28 +1,18 @@
-import { useState, useEffect } from "react";
+type users = {
+  profile: string;
+  fName: string;
+};
 
-function UsersProfile() {
-  const [commune, setCommune] = useState<any>("");
-
-  useEffect(() => {
-    async function fetchData() {
-      const response = await fetch("http://localhost:3000/community");
-      const result = await response.json();
-      setCommune(result);
-    }
-    fetchData();
-  }, []);
-
+function UsersProfile(props: users) {
   return (
-    <div className={`p-5 flex flex-col justify-center items-center border lg:w-52 lg:h-52`}>
-      <div className={`rounded-full overflow-hidden justify-center items-center`}>
-        <img src={commune === "" ? "loading" : commune.profile} />
-      </div>
-      <div className={`mt-3 text-primary-2 flex flex-col justify-center items-center text-center`}>
-        <p>{commune === "" ? "loading" : `${commune.firstName}`}</p>
+    <div className={`p-5 flex lg:flex-col justify-center items-center border lg:max-h-56 sm:max-h-40`}>
+      <img className={`rounded-full justify-center items-center`} src={props.profile} />
+      <div className={`mt-3 text-primary-2 flex flex-col justify-center items-start lg:items-center text-center ps-5 lg:ps-0`}>
+        <p className={`text-xl lg:text-base`}>{props.fName}</p>
         <div className={`flex justify-center items-center gap-1`}>
-          <p className={`py-1 px-2 text-xs rounded-md border border-gray-300`}>S1E1B1</p>
-          <p className={`py-1 px-2 text-xs rounded-md border border-gray-300`}>S1E1B1</p>
-          <p className={`py-1 px-2 text-xs rounded-md border border-gray-300`}>S1E1B1</p>
+          <p className={`text-xs rounded-sm px-1 border border-gray-300`}>E1B1</p>
+          <p className={`text-xs rounded-sm px-1 border border-gray-300`}>E1B1</p>
+          <p className={`text-xs rounded-sm px-1 border border-gray-300`}>E1B1</p>
         </div>
       </div>
     </div>
