@@ -1,4 +1,3 @@
-import { flexItemsCol, flexItemsRow } from "src/shared/style";
 import CardProfile from "./CardProfile";
 import { HashLink } from "react-router-hash-link";
 import { appUseDispatch, appUseSelector } from "src/hooks/hooks";
@@ -35,15 +34,15 @@ function CampCard(props: camp) {
   }, [data]);
 
   return (
-    <div className={`${flexItemsCol} items-center flex-col bg-white p-7 rounded-2xl mt-7 w-72 border border-black`}>
+    <div className={`flex justify-center items-center flex-col bg-white p-7 rounded-2xl mt-7 w-72 border border-black`}>
       <h4 className={`text-center`}>{props.bivouac}</h4>
-      <div className={`${flexItemsCol} items-center flex-col gap-1 p-10 border border-primary-2 my-2`}>
+      <div className={`flex justify-center items-center flex-col gap-1 p-10 border border-primary-2 my-2`}>
         <CardProfile />
-        <div className={`${flexItemsRow} gap-1`}>
+        <div className={`flex items-center gap-1`}>
           <CardProfile />
           <CardProfile />
         </div>
-        <div className={`${flexItemsRow} gap-1`}>
+        <div className={`flex items-center gap-1`}>
           <CardProfile />
           <CardProfile />
         </div>

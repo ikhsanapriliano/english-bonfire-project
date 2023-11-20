@@ -16,12 +16,11 @@ export default {
         "primary-2": "#151B1F",
         "primary-3": "#374548",
         "primary-4": "#E8F7DD",
-        "primary-5": "#7C96AB",
       },
       width: {
         1200: "1240px",
       },
     },
   },
-  plugins: [require("tailwind-scrollbar")],
+  plugins: [],
 };

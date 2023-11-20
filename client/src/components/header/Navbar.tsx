@@ -1,4 +1,3 @@
-import { flexItemsRow } from "shared/style";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/20/solid";
 import { useState } from "react";
 import { HashLink } from "react-router-hash-link";
@@ -15,14 +14,14 @@ function Navbar() {
 
   return (
     <nav>
-      <div className={`${flexItemsRow} justify-center w-screen h-20 p-4 fixed z-30 top-0 bg-white drop-shadow`}>
-        <div className={`w-1200 ${flexItemsRow} justify-between`}>
+      <div className={`flex items-center justify-center w-screen h-20 p-4 fixed z-30 top-0 bg-white drop-shadow`}>
+        <div className={`w-1200 flex-items-center justify-between`}>
           {/* {left side} */}
-          <div className={`${flexItemsRow} gap-8 w-3/4 ps-2`}>
+          <div className={`flex items-center gap-8 w-3/4 ps-2`}>
             <HashLink smooth to={`/#welcome`}>
               <h1 className={`text-2xl pl-2 font-medium text-primary-2`}>ENGLISH BONFIRE</h1>
             </HashLink>
-            <div className={`${flexItemsRow} gap-8`}>
+            <div className={`flex items-center gap-8`}>
               <HashLink smooth to={`/#welcome`} className={`text-primary-2 font-medium sm:hidden lg:block`}>
                 Home
               </HashLink>
@@ -35,8 +34,8 @@ function Navbar() {
             </div>
           </div>
           {/* {right side} */}
-          <div className={`${flexItemsRow} justify-end md:gap-2 sm:gap-0 w-1/4 sm:pe-1 md:pe-4`}>
-            <HashLink smooth to={`/#dashboard`} className={`${flexItemsRow} justify-center sm:hidden md:flex`}>
+          <div className={`flex items-center justify-end md:gap-2 sm:gap-0 w-1/4 sm:pe-1 md:pe-4`}>
+            <HashLink smooth to={`/#dashboard`} className={`flex items-center justify-center sm:hidden md:flex`}>
               <img className={`w-14 rounded-full`} src={isLoggedIn ? data?.profile : personalProfile} />
             </HashLink>
             <button onClick={onMenu} className={`lg:hidden p-3 cursor-pointer`}>

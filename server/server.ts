@@ -4,7 +4,6 @@ import dotenv from "dotenv";
 import axios from "axios";
 import qs from "querystring";
 import cors from "cors";
-import bodyParser, { json } from "body-parser";
 
 dotenv.config();
 const app = express();

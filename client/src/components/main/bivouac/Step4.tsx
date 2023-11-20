@@ -12,7 +12,7 @@ function Step4() {
   const [answer, setAnswer] = useState<string>("");
 
   useEffect(() => {
-    const random = Math.floor(Math.random() * 100);
+    const random = Math.floor(Math.random() * 15);
     setQuestion(random);
   }, []);
 

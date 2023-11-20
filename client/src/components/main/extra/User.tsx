@@ -1,4 +1,3 @@
-import { flexItemsRow, flexItemsCol } from "src/shared/style";
 import { appUseSelector } from "src/hooks/hooks";
 import { useState, useEffect } from "react";
 
@@ -37,12 +36,12 @@ function User() {
   }, [data]);
 
   return (
-    <section className={`${flexItemsRow} justify-center w-full mt-5 pb-10 text-3xl font-medium`}>
-      <div className={`${flexItemsCol} items-center flex-col px-5`}>
+    <section className={`flex items-center justify-center w-full mt-5 pb-10 text-3xl font-medium`}>
+      <div className={`flec justify-center items-center flex-col px-5`}>
         <p>{admin}</p>
         <p>Admin</p>
       </div>
-      <div className={`${flexItemsCol} items-center flex-col px-5`}>
+      <div className={`flex justify-center items-center flex-col px-5`}>
         <p>{member}</p>
         <p>Member</p>
       </div>
