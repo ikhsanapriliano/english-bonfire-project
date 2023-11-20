@@ -45,11 +45,11 @@ function PersonalCard() {
         </div>
         <div className={`py-5`}>
           {isLoggedIn ? (
-            <Link to={`http://localhost:3000/logout`}>
+            <Link to={`https://bonfire.cyclic.app/logout`}>
               <div className={`text-white rounded-sm text-sm bg-red-700 py-1 px-5 hover:bg-red-900`}>Logout</div>
             </Link>
           ) : (
-            <Link to={`http://localhost:3000/auth/linkedin`}>
+            <Link to={`https://bonfire.cyclic.app/auth/linkedin`}>
               <img
                 onMouseEnter={() => {
                   setColor(!color);

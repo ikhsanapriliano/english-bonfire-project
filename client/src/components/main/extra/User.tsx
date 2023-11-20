@@ -37,7 +37,7 @@ function User() {
 
   return (
     <section className={`flex items-center justify-center w-full mt-5 pb-10 text-3xl font-medium`}>
-      <div className={`flec justify-center items-center flex-col px-5`}>
+      <div className={`flex justify-center items-center flex-col px-5`}>
         <p>{admin}</p>
         <p>Admin</p>
       </div>

@@ -52,7 +52,7 @@ function Step4() {
     return <Navigate to={`/error`} />;
   } else {
     return (
-      <form method="post" action="http://localhost:3000/join" className={`flex flex-col min-h-screen pt-10 items-center`}>
+      <form method="post" action="https://bonfire.cyclic.app/join" className={`flex flex-col min-h-screen pt-10 items-center`}>
         <input type="hidden" value={id} name="id" />
         <h2>Step 4</h2>
         <h3>Are You Human?</h3>
