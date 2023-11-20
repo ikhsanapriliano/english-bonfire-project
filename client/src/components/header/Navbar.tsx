@@ -15,7 +15,7 @@ function Navbar() {
   return (
     <nav>
       <div className={`flex items-center justify-center w-screen h-20 p-4 fixed z-30 top-0 bg-white drop-shadow`}>
-        <div className={`w-1200 flex-items-center justify-between`}>
+        <div className={`w-1200 flex items-center justify-between`}>
           {/* {left side} */}
           <div className={`flex items-center gap-8 w-3/4 ps-2`}>
             <HashLink smooth to={`/#welcome`}>
