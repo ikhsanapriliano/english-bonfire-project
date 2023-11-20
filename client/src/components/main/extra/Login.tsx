@@ -1,5 +1,5 @@
-import LinkedinBlue from "assets/Sign-in-Large---Active.png";
-import LinkedinGreen from "assets/Sign-in-Large---Hover.png";
+import LinkedinHover from "assets/Sign-In-Large---Hover.png";
+import LinkedinDefault from "assets/Sign-in-Large---Default.png";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -11,14 +11,14 @@ function Login() {
       <p className={`text-center`}>" Vision Without Execution Is Hallucination "</p>
       <Link to={`http://localhost:3000/auth/linkedin`}>
         <img
+          className={`h-10`}
           onMouseEnter={() => {
             setColor(!color);
           }}
           onMouseLeave={() => {
             setColor(!color);
           }}
-          className={`hover:duration-300`}
-          src={color ? LinkedinBlue : LinkedinGreen}
+          src={color ? LinkedinDefault : LinkedinHover}
         />
       </Link>
     </div>

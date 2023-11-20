@@ -1,5 +1,5 @@
 import { flexItemsRow } from "shared/style";
-import { MoonIcon, Bars3Icon, XMarkIcon } from "@heroicons/react/20/solid";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/20/solid";
 import { useState } from "react";
 import { HashLink } from "react-router-hash-link";
 import personalProfile from "assets/personalProfile.png";
@@ -36,11 +36,6 @@ function Navbar() {
           </div>
           {/* {right side} */}
           <div className={`${flexItemsRow} justify-end md:gap-2 sm:gap-0 w-1/4 sm:pe-1 md:pe-4`}>
-            <button className={`p-3 cursor-pointer`}>
-              <div className={`w-7`}>
-                <MoonIcon />
-              </div>
-            </button>
             <HashLink smooth to={`/#dashboard`} className={`${flexItemsRow} justify-center sm:hidden md:flex`}>
               <img className={`w-14 rounded-full`} src={isLoggedIn ? data?.profile : personalProfile} />
             </HashLink>

@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import axios from "axios";
 import qs from "querystring";
 import cors from "cors";
+import bodyParser, { json } from "body-parser";
 
 dotenv.config();
 const app = express();
@@ -15,6 +16,8 @@ app.use(
     origin: "http://localhost:5173",
   })
 );
+
+app.use(express.urlencoded({ extended: true }));
 
 mongoose.connect(mongodbUri);
 
@@ -52,18 +55,11 @@ const userSchema = new mongoose.Schema({
   lastName: String,
   profile: String,
   status: String,
-});
-
-const campSchema = new mongoose.Schema({
-  episode: Number,
-  bevouac1: [String],
-  bevouac2: [String],
-  bevouac3: [String],
+  camp: [String],
 });
 
 let identity = "";
 const User = mongoose.model("User", userSchema);
-const Camp = mongoose.model("Camps", campSchema);
 
 app.get("/auth/linkedin", (req, res) => {
   return res.redirect(Authorization());
@@ -90,6 +86,7 @@ app.get("/auth/linkedin/callback", async (req: any, res) => {
         lastName: family_name,
         profile: picture,
         status: "member",
+        camp: [],
       });
       newUser.save().then(() => {
         console.log("new account");
@@ -116,15 +113,16 @@ app.get("/community", async (req, res) => {
   res.json(community);
 });
 
-// app.get("/join", async (req, res) => {
-//   const join = await User.findOne({ sub: identity });
-//   if(join !== null) {
-//     const newCamp = new Camp({
-//       episode: "1",
-//       bevouac
-//     })
-//   }
-// });
+app.post("/join", async (req, res) => {
+  const id = req.body.id;
+  await User.updateOne({ sub: identity }, { $push: { camp: id } });
+  res.redirect("http://localhost:5173/bivouac/finished");
+});
+
+app.get("/logout", (req, res) => {
+  identity = "";
+  res.redirect("http://localhost:5173");
+});
 
 app.listen(port, () => {
   console.log(`your app is running on port ${port}`);

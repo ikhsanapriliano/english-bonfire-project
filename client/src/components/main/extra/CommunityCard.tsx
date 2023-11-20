@@ -10,7 +10,7 @@ function CommunityCard() {
 
   function userRender() {
     if (data.length > 0) {
-      const users = data.map((user, index) => <UsersProfile key={index} profile={user.profile} fName={user.firstName} />);
+      const users = data.map((user, index) => <UsersProfile key={index} profile={user.profile} fName={user.firstName} camp={user.camp} />);
       return users;
     }
   }

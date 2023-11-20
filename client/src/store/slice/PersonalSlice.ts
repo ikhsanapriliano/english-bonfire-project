@@ -6,28 +6,23 @@ type Personal = {
   lastName: null | string;
   profile: undefined | string;
   status: null | string;
+  camp: string[];
 };
 
 type InitialState = {
   data: Personal | null;
   isLoggedIn: boolean;
-  camp: string[];
 };
 
 const initialState: InitialState = {
   data: null,
   isLoggedIn: false,
-  camp: [],
 };
 
 const personalSlice = createSlice({
   name: "personal",
   initialState,
-  reducers: {
-    logOut: (state) => {
-      (state.data = null), (state.isLoggedIn = false), (state.camp = []);
-    },
-  },
+  reducers: {},
   extraReducers: (builder) =>
     builder
       .addCase(fetchPersonal.fulfilled, (state, action) => {
@@ -49,5 +44,4 @@ export const fetchPersonal = createAsyncThunk<Personal>("personal/fetchPersonal"
   return data;
 });
 
-export const { logOut } = personalSlice.actions;
 export default personalSlice.reducer;

@@ -12,9 +12,11 @@ import { appUseDispatch, appUseSelector } from "src/hooks/hooks";
 import { fetchData } from "src/store/slice/CommunitySlice";
 import { fetchPersonal } from "./store/slice/PersonalSlice";
 import { useEffect } from "react";
+import ErrorPage from "./components/main/error/ErrorPage";
+import LoadingPage from "./components/loading/LoadingPage";
 
 function App() {
-  const { loading, error } = appUseSelector((state) => state.community);
+  const { loading } = appUseSelector((state) => state.community);
   const dispatch = appUseDispatch();
   useEffect(() => {
     dispatch(fetchData());
@@ -24,19 +26,20 @@ function App() {
   return (
     <div className="app">
       {loading ? (
-        <div>Loading...</div>
+        <LoadingPage />
       ) : (
         <BrowserRouter>
           <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/bevouac" element={<Bevouac />}>
+            <Route path="/bivouac" element={<Bevouac />}>
               <Route index element={<Step1 />} />
               <Route path="rules" element={<Step2 />} />
               <Route path="plan" element={<Step3 />} />
               <Route path="solve" element={<Step4 />} />
               <Route path="finished" element={<Step5 />} />
             </Route>
+            <Route path="/error" element={<ErrorPage />} />
           </Routes>
           <Footer />
         </BrowserRouter>
