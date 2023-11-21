@@ -67,13 +67,13 @@ function PersonalCard() {
       <div className={`flex flex-col justify-center items-center mt-4 rounded lg border shadow-sm shadow-gray-300`}>
         <p className={`text-lg font-medium w-full text-center border-b border-gray-300`}>Follow Us</p>
         <div className={`flex justify-center py-4 items-center gap-2`}>
-          <Link to={`https://www.youtube.com`}>
+          <Link to={`https://www.instagram.com/englishbonfire.id/`}>
             <img className={`rounded-full w-8`} src={Instagram} />
           </Link>
-          <Link to={`https://www.youtube.com`}>
+          <Link to={`https://discord.gg/M4jZ8nyF`}>
             <img className={`rounded-full w-8`} src={Discord} />
           </Link>
-          <Link to={`https://www.youtube.com`}>
+          <Link to={`https://www.linkedin.com/company/98864385/admin/inbox/`}>
             <img className={`rounded-full w-8`} src={Linkedin} />
           </Link>
         </div>

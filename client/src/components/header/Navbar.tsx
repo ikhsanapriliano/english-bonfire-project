@@ -18,7 +18,13 @@ function Navbar() {
         <div className={`w-1200 flex items-center justify-between`}>
           {/* {left side} */}
           <div className={`flex items-center gap-8 w-3/4 ps-2`}>
-            <HashLink smooth to={`/#welcome`}>
+            <HashLink
+              onClick={() => {
+                setMenu(false);
+              }}
+              smooth
+              to={`/#welcome`}
+            >
               <h1 className={`text-2xl pl-2 font-medium text-primary-2`}>ENGLISH BONFIRE</h1>
             </HashLink>
             <div className={`flex items-center gap-8`}>
@@ -52,13 +58,34 @@ function Navbar() {
             }
           >
             <div className={`flex flex-col justify-center gap-3 text-primary-2 font-medium text-xl`}>
-              <HashLink smooth to={`/#welcome`} className={`pb-1 pt-4 border-b border-gray-500`}>
+              <HashLink
+                onClick={() => {
+                  onMenu();
+                }}
+                smooth
+                to={`/#welcome`}
+                className={`pb-1 pt-4 border-b border-gray-500`}
+              >
                 Home
               </HashLink>
-              <HashLink smooth to={`/#dashboard`} className={`pb-1 pt-4 border-b border-gray-500`}>
+              <HashLink
+                onClick={() => {
+                  onMenu();
+                }}
+                smooth
+                to={`/#dashboard`}
+                className={`pb-1 pt-4 border-b border-gray-500`}
+              >
                 Dashboard
               </HashLink>
-              <HashLink smooth to={`/#camp`} className={`pb-1 pt-4 border-b border-gray-500`}>
+              <HashLink
+                onClick={() => {
+                  onMenu();
+                }}
+                smooth
+                to={`/#camp`}
+                className={`pb-1 pt-4 border-b border-gray-500`}
+              >
                 Camp
               </HashLink>
             </div>

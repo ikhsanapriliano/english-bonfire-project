@@ -5,13 +5,52 @@ import { appUseSelector } from "src/hooks/hooks";
 
 function CommunityCard() {
   const [isHidden, setHidden] = useState<boolean>(true);
+  const [search, setSearch] = useState<string>("");
+  const [find, setFind] = useState<string[]>([]);
+  const [searching, setSearching] = useState<boolean>(false);
 
   const { data } = appUseSelector((state) => state.community);
 
   function userRender() {
     if (data.length > 0) {
-      const users = data.map((user, index) => <UsersProfile key={index} profile={user.profile} fName={user.firstName} camp={user.camp} />);
-      return users;
+      return data.map((user, index) => <UsersProfile key={index} profile={user.profile} fName={user.firstName} camp={user.camp} />);
+    }
+    return null;
+  }
+
+  function userFound() {
+    if (data.length > 0) {
+      if (find.length > 0) {
+        return find.map((user, index) => {
+          const foundUser = data.find((item) => item.sub === user);
+          if (foundUser) {
+            return <UsersProfile key={index} profile={foundUser.profile} fName={foundUser.firstName} camp={foundUser.camp} />;
+          }
+          return null;
+        });
+      }
+    }
+    return null;
+  }
+
+  function findHandle() {
+    data.forEach((item) => {
+      const wordRegex = new RegExp(search, "i");
+      const result = wordRegex.test(item.firstName);
+      const newValue = [];
+      if (result == true) {
+        newValue.push(item.sub);
+      }
+      setFind(newValue);
+    });
+    setSearching(true);
+  }
+
+  function finalOutput() {
+    if (searching === false) {
+      return userRender();
+    } else {
+      return userFound();
     }
   }
 
@@ -29,10 +68,22 @@ function CommunityCard() {
             Community
           </div>
         </button>
-        <input className={isHidden ? `hidden lg:inline-block text-center border-b border-primary-1` : `text-center border-b border-primary-1`} type="text" placeholder="Search" />
+        <div className={`${isHidden ? `hidden lg:flex` : `flex`} justify-center items-end gap-1`}>
+          <input
+            onChange={(e) => {
+              setSearch(e.target.value);
+            }}
+            className={`px-2 w-40 text-center border-b border-primary-1`}
+            type="text"
+            placeholder="Find Someone"
+          />
+          <button onClick={findHandle} className={` bg-primary-1 text-white px-2 rounded-sm hover:bg-primary-2`}>
+            Search
+          </button>
+        </div>
       </div>
       <div className={isHidden ? `hidden lg:w-full lg:inline-block lg:h-[810px] overflow-y-scroll border` : `h-[450px] inline-block lg:h-[810px] overflow-y-scroll border w-full`}>
-        <div className={`lg:grid lg:grid-cols-3 grid-cols-1`}>{userRender()}</div>
+        <div className={`lg:grid lg:grid-cols-3 grid-cols-1`}>{finalOutput()}</div>
       </div>
     </div>
   );
