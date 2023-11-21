@@ -12,7 +12,7 @@ const mongodbUri = process.env.MONGODB_URI;
 
 app.use(
   cors({
-    origin: "https://englishbonfire.netlify.app",
+    origin: "http://localhost:5173",
   })
 );
 
@@ -90,12 +90,12 @@ app.get("/auth/linkedin/callback", async (req: any, res) => {
       newUser.save().then(() => {
         console.log("new account");
         identity = newUser.sub;
-        res.redirect("https://englishbonfire.netlify.app");
+        res.redirect("http://localhost:5173");
       });
     } else {
       console.log("account found");
       identity = sub;
-      res.redirect("https://englishbonfire.netlify.app");
+      res.redirect("http://localhost:5173");
     }
   } catch (error) {
     res.send(error);
@@ -115,12 +115,12 @@ app.get("/community", async (req, res) => {
 app.post("/join", async (req, res) => {
   const id = req.body.id;
   await User.updateOne({ sub: identity }, { $push: { camp: id } });
-  res.redirect("https://englishbonfire.netlify.app/bivouac/finished");
+  res.redirect("http://localhost:5173/bivouac/finished");
 });
 
 app.get("/logout", (req, res) => {
   identity = "";
-  res.redirect("https://englishbonfire.netlify.app");
+  res.redirect("http://localhost:5173");
 });
 
 app.listen(port, () => {

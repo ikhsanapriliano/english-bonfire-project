@@ -33,7 +33,7 @@ function Step2() {
   }, [value]);
 
   if (id === "") {
-    return <Navigate to={`/error`} />;
+    return <Navigate to={`/unknown`} />;
   } else {
     return (
       <div className={`flex flex-col items-center min-h-screen py-10`}>

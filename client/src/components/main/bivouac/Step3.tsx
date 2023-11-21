@@ -8,7 +8,7 @@ function Step3() {
   const { id, bivouac, day } = appUseSelector((state) => state.camp);
 
   if (id === "") {
-    return <Navigate to={`/error`} />;
+    return <Navigate to={`/unknown`} />;
   } else {
     return (
       <div className={`flex flex-col pt-10 min-h-screen items-center`}>

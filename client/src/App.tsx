@@ -39,7 +39,7 @@ function App() {
               <Route path="solve" element={<Step4 />} />
               <Route path="finished" element={<Step5 />} />
             </Route>
-            <Route path="/error" element={<ErrorPage />} />
+            <Route path="/unknown" element={<ErrorPage />} />
           </Routes>
           <Footer />
         </BrowserRouter>

@@ -39,7 +39,7 @@ const personalSlice = createSlice({
 });
 
 export const fetchPersonal = createAsyncThunk<Personal>("personal/fetchPersonal", async () => {
-  const response = await fetch("https://bonfire.cyclic.app/personal");
+  const response = await fetch("http://localhost:3000/personal");
   const data: Personal = await response.json();
   return data;
 });
