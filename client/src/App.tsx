@@ -1,6 +1,6 @@
 import Footer from "./components/footer/Footer";
 import Navbar from "./components/header/Navbar";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Home from "./components/main/homepage/Home";
 import Step1 from "./components/main/bivouac/Step1";
 import Step2 from "./components/main/bivouac/Step2";
@@ -28,7 +28,7 @@ function App() {
       {loading ? (
         <LoadingPage />
       ) : (
-        <BrowserRouter>
+        <div>
           <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />
@@ -42,7 +42,7 @@ function App() {
             <Route path="/unknown" element={<ErrorPage />} />
           </Routes>
           <Footer />
-        </BrowserRouter>
+        </div>
       )}
     </div>
   );

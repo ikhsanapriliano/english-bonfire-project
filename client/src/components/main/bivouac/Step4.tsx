@@ -10,7 +10,6 @@ function Step4() {
   const [question, setQuestion] = useState<number>(0);
   const [isTrue, setTrue] = useState<null | boolean>(null);
   const [answer, setAnswer] = useState<string>("");
-  const [submitted, setSubmitted] = useState<boolean>(false);
 
   useEffect(() => {
     const random = Math.floor(Math.random() * 15);
@@ -49,20 +48,11 @@ function Step4() {
     }
   }
 
-  if (id === "" && submitted === false) {
+  if (id === "") {
     return <Navigate to={`/unknown`} />;
-  } else if (id === "" && submitted === true) {
-    return <Navigate to={`/`} />;
   } else {
     return (
-      <form
-        onSubmit={() => {
-          setSubmitted(true);
-        }}
-        method="post"
-        action="http://localhost:3000/join"
-        className={`flex flex-col min-h-screen pt-10 items-center`}
-      >
+      <form method="post" action={"https://english-bonfire-server.up.railway.app/join"} className={`flex flex-col min-h-screen pt-10 items-center`}>
         <input type="hidden" value={id} name="id" />
         <h2>Step 4</h2>
         <h3>Are You Human?</h3>

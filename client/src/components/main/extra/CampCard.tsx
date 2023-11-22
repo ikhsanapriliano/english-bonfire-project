@@ -68,7 +68,7 @@ function CampCard(props: camp) {
         to={registered}
         className={`py-1 px-5 rounded-sm mt-2 bg-primary-2 hover:bg-primary-1 text-white`}
       >
-        Join
+        {props.cap === 5 ? `Full` : `Join`}
       </HashLink>
     </div>
   );

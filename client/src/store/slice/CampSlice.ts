@@ -20,9 +20,6 @@ const campSlice = createSlice({
       state.id = action.payload.id;
       state.bivouac = action.payload.bivouac;
       state.day = action.payload.day;
-      console.log(state.id);
-      console.log(state.bivouac);
-      console.log(state.day);
     },
   },
 });

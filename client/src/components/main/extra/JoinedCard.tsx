@@ -62,7 +62,7 @@ function JoinedCard() {
         </ul>
       </div>
       <div className={`flex flex-col w-60 justify-center rounded-md border shadow shadow-gray-300`}>
-        <p className={`text-center border-b border-gray-300 py-3`}>B1vouac 3</p>
+        <p className={`text-center border-b border-gray-300 py-3`}>Bivouac 3</p>
         <ul className={`flex flex-col text gap-5 px-2 py-5`}>
           <ul className={`flex flex-col text gap-3 px-2 py-5`}>
             <li className={`border-b border-gray-300`}>{b3[0] !== undefined ? `1.${b3[0]}` : `1.-`}</li>
