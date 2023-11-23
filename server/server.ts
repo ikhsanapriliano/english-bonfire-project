@@ -136,12 +136,12 @@ app.get("/auth/linkedin/callback", async (req, res) => {
       newUser.save().then(() => {
         console.log("new account");
         identity = newUser.sub;
-        res.redirect("https://englishbonfire.netlify.app");
+        res.redirect("http://localhost:3000");
       });
     } else {
       console.log("account found");
       identity = sub;
-      res.redirect("https://englishbonfire.netlify.app");
+      res.redirect("http://localhost:3000");
     }
   } catch (error) {
     res.send(error);
@@ -150,6 +150,7 @@ app.get("/auth/linkedin/callback", async (req, res) => {
 
 app.get("/personal", async (req, res) => {
   const user = await User.findOne({ sub: identity });
+  identity = "";
   res.json(user);
 });
 
@@ -160,23 +161,28 @@ app.get("/community", async (req, res) => {
 
 app.post("/join", async (req, res) => {
   const id = req.body.id;
-  const user = await User.findOne({ sub: identity });
-  const exist = user.camp.includes(id);
-  if (exist === false) {
-    await User.updateOne({ sub: identity }, { $push: { camp: id } });
-    res.redirect("https://englishbonfire.netlify.app/bivouac/finished");
+  const sub = req.body.sub;
+  if (id !== null && sub !== null) {
+    const user = await User.findOne({ sub: sub });
+    const exist = user.camp.includes(id);
+    if (exist === false) {
+      await User.updateOne({ sub: sub }, { $push: { camp: id } });
+      res.redirect("http://localhost:5173/bivouac/finished");
+    } else {
+      res.redirect("http://localhost:5173/unknown");
+    }
   } else {
-    res.redirect("https://englishbonfire.netlify.app/unknown");
+    res.redirect("http://localhost:5173/unknown");
   }
 });
 
 app.post("/something", (req, res) => {
-  res.redirect("https://englishbonfire.netlify.app/unknown");
+  res.redirect("http://localhost:5173/unknown");
 });
 
 app.get("/logout", (req, res) => {
   identity = "";
-  res.redirect("https://englishbonfire.netlify.app");
+  res.redirect("http://localhost:5173");
 });
 
 app.listen(port, "0.0.0.0", () => {

@@ -43,7 +43,7 @@ const communitySlice = createSlice({
 });
 
 export const fetchData = createAsyncThunk<community[]>("community/fetchData", async () => {
-  const response = await fetch("https://english-bonfire-server.up.railway.app/community");
+  const response = await fetch("http://localhost:3000/community");
   const data: community[] = await response.json();
   return data;
 });

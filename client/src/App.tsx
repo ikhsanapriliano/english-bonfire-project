@@ -10,14 +10,15 @@ import Step5 from "./components/main/bivouac/Step5";
 import Bevouac from "./components/main/bivouac/Bivouac";
 import { appUseDispatch, appUseSelector } from "src/hooks/hooks";
 import { fetchData } from "src/store/slice/CommunitySlice";
-import { fetchPersonal } from "./store/slice/PersonalSlice";
 import { useEffect } from "react";
 import ErrorPage from "./components/main/error/ErrorPage";
 import LoadingPage from "./components/loading/LoadingPage";
+import { fetchPersonal } from "src/store/slice/PersonalSlice";
 
 function App() {
   const { loading } = appUseSelector((state) => state.community);
   const dispatch = appUseDispatch();
+
   useEffect(() => {
     dispatch(fetchData());
     dispatch(fetchPersonal());

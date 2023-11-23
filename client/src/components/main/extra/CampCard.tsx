@@ -16,7 +16,7 @@ function CampCard(props: camp) {
   const dispatch = appUseDispatch();
   const [registered, setRegistered] = useState<string>(`/bivouac/#step`);
 
-  function updateCamp() {
+  async function updateCamp() {
     dispatch(
       addCamp({
         id: props.id,
@@ -24,6 +24,13 @@ function CampCard(props: camp) {
         day: props.day,
       })
     );
+    // await fetch('http://localhost:3000/api/sendData', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify({ data: dataToSend }),
+    // });
   }
 
   useEffect(() => {

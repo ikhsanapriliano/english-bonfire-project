@@ -9,7 +9,7 @@ function Login() {
   return (
     <div className={`flex flex-col justify-center items-center mt-5 gap-2`}>
       <p className={`text-center`}>" Vision Without Execution Is Hallucination "</p>
-      <Link to={`https://english-bonfire-server.up.railway.app/auth/linkedin`}>
+      <Link to={`http://localhost:3000/auth/linkedin`}>
         <img
           className={`h-10`}
           onMouseEnter={() => {

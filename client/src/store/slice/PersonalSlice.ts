@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 type Personal = {
-  sub: null | string;
+  sub: any;
   firstName: null | string;
   lastName: null | string;
   profile: undefined | string;
@@ -39,7 +39,7 @@ const personalSlice = createSlice({
 });
 
 export const fetchPersonal = createAsyncThunk<Personal>("personal/fetchPersonal", async () => {
-  const response = await fetch("https://english-bonfire-server.up.railway.app/personal");
+  const response = await fetch("http://localhost:3000/personal");
   const data: Personal = await response.json();
   return data;
 });
