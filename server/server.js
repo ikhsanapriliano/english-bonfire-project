@@ -4,18 +4,20 @@ import dotenv from "dotenv";
 import axios from "axios";
 import qs from "querystring";
 import cors from "cors";
+import bodyParser from "body-parser";
 
 dotenv.config();
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 const mongodbUri = process.env.MONGODB_URI;
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "https://englishbonfire.netlify.app",
   })
 );
 
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 mongoose.connect(mongodbUri);
@@ -60,48 +62,6 @@ const userSchema = new mongoose.Schema({
 let identity = "";
 const User = mongoose.model("User", userSchema);
 
-app.get("/auth/linkedin", (req, res) => {
-  return res.redirect(Authorization());
-});
-
-app.get("/auth/linkedin/callback", async (req: any, res) => {
-  const code = await Redirect(req.query.code);
-  const token = code.access_token;
-  const axiosInstance = axios.create({
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
-    },
-  });
-  try {
-    const fetch = await axiosInstance.get("https://api.linkedin.com/v2/userinfo");
-    const result = await fetch.data;
-    const { sub, given_name, family_name, picture } = result;
-    const exist = await User.findOne({ sub: sub });
-    if (exist === null) {
-      const newUser = new User({
-        sub: sub,
-        firstName: given_name,
-        lastName: family_name,
-        profile: picture,
-        status: "member",
-        camp: [],
-      });
-      newUser.save().then(() => {
-        console.log("new account");
-        identity = newUser.sub;
-        res.redirect("http://localhost:5173");
-      });
-    } else {
-      console.log("account found");
-      identity = sub;
-      res.redirect("http://localhost:5173");
-    }
-  } catch (error) {
-    res.send(error);
-  }
-});
-
 app.get("/", (req, res) => {
   res.send("welcome");
 });
@@ -136,12 +96,12 @@ app.get("/auth/linkedin/callback", async (req, res) => {
       newUser.save().then(() => {
         console.log("new account");
         identity = newUser.sub;
-        res.redirect("http://localhost:3000");
+        res.redirect("https://englishbonfire.netlify.app");
       });
     } else {
       console.log("account found");
       identity = sub;
-      res.redirect("http://localhost:3000");
+      res.redirect("https://englishbonfire.netlify.app");
     }
   } catch (error) {
     res.send(error);
@@ -159,30 +119,40 @@ app.get("/community", async (req, res) => {
   res.json(community);
 });
 
+app.post("/coba", (req, res) => {
+  const makan = req.body.makan;
+  const minum = req.body.minum;
+  res.json({ makanan: makan, minuman: minum });
+});
+
 app.post("/join", async (req, res) => {
-  const id = req.body.id;
-  const sub = req.body.sub;
-  if (id !== null && sub !== null) {
-    const user = await User.findOne({ sub: sub });
-    const exist = user.camp.includes(id);
-    if (exist === false) {
-      await User.updateOne({ sub: sub }, { $push: { camp: id } });
-      res.redirect("http://localhost:5173/bivouac/finished");
-    } else {
-      res.redirect("http://localhost:5173/unknown");
+  const id = req.body && req.body.id;
+  const sub = req.body && req.body.sub;
+  if (id !== undefined && sub !== undefined) {
+    try {
+      const user = await User.findOne({ sub: sub });
+      const exist = user && user.camp.includes(id);
+      if (!exist) {
+        await User.updateOne({ sub: sub }, { $push: { camp: id } });
+        res.redirect("https://englishbonfire.netlify.app/bivouac/finished");
+      } else {
+        res.redirect("https://englishbonfire.netlify.app/unknown");
+      }
+    } catch (error) {
+      res.redirect("https://englishbonfire.netlify.app/unknown");
     }
   } else {
-    res.redirect("http://localhost:5173/unknown");
+    res.redirect("https://englishbonfire.netlify.app/unknown");
   }
 });
 
 app.post("/something", (req, res) => {
-  res.redirect("http://localhost:5173/unknown");
+  res.redirect("https://englishbonfire.netlify.app/unknown");
 });
 
 app.get("/logout", (req, res) => {
   identity = "";
-  res.redirect("http://localhost:5173");
+  res.redirect("https://englishbonfire.netlify.app");
 });
 
 app.listen(port, "0.0.0.0", () => {

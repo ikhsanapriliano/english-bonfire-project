@@ -31,6 +31,9 @@ function Navbar() {
               <HashLink smooth to={`/#welcome`} className={`text-primary-2 font-medium sm:hidden lg:block`}>
                 Home
               </HashLink>
+              <HashLink smooth to={`/#about`} className={`text-primary-2 font-medium sm:hidden lg:block`}>
+                About Us
+              </HashLink>
               <HashLink smooth to={`/#dashboard`} className={`text-primary-2 font-medium sm:hidden lg:block`}>
                 Dashboard
               </HashLink>
@@ -67,6 +70,16 @@ function Navbar() {
                 className={`pb-1 pt-4 border-b border-gray-500`}
               >
                 Home
+              </HashLink>
+              <HashLink
+                onClick={() => {
+                  onMenu();
+                }}
+                smooth
+                to={`/#about`}
+                className={`pb-1 pt-4 border-b border-gray-500`}
+              >
+                About Us
               </HashLink>
               <HashLink
                 onClick={() => {
